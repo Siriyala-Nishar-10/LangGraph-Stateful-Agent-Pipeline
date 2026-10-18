@@ -92,6 +92,71 @@ LangGraph has no config file. It reads environment variables instead:
 In this project, API keys such as `OPENAI_API_KEY` go in a `.env` file, which is
 git-ignored.
 
-## Next Steps
+## Data Flow (W1D3)
 
-- W1D3: Map the data flow
+### Input
+
+A Python dict matching the graph's `State` schema, e.g. `{"question": "what is LangGraph?"}`.
+
+### Processing
+
+`StateGraph.compile()` builds a runnable graph. When it runs, each node receives
+the current state and returns a partial update. LangGraph merges that update into
+the state (via channels) and then follows the edges to the next node.
+
+### Output
+
+The final state dict, e.g. `{"question": ..., "notes": ..., "answer": ...}`.
+
+### Diagram
+
+```
+  input dict
+  {"question": ...}
+        |
+        v
+   +---------+
+   |  START  |
+   +---------+
+        |
+        v
+   +----------+      returns {"notes": ...}
+   | research | ------------------------+
+   +----------+                          |
+        |                                v
+        |                      +------------------+
+        |                      |   shared STATE   |  <-- persisted by
+        |                      | question|notes|ans|      checkpointer
+        |                      +------------------+
+        v                                ^
+   +-----------+     returns {"answer": ...}
+   | summarise | ------------------------+
+   +-----------+
+        |
+        v
+   +---------+
+   |   END   |
+   +---------+
+        |
+        v
+  final state dict
+```
+
+### Core concept: graph-based agent control flow
+
+- **Nodes**: Python functions that read the state and return updates
+- **Edges**: fixed transitions between nodes (`add_edge`)
+- **Conditional routing**: `add_conditional_edges` picks the next node based on the
+  state (used later for branching in this project)
+- **Persistent state**: a checkpointer saves the state after each step, so a run can
+  pause for human approval and resume
+
+  ### Sample run (`python trace_flow.py`)
+
+````
+INPUT: {'question': 'what is LangGraph?'}
+NODE UPDATE: {'research': {'notes': 'facts about what is LangGraph?'}}
+NODE UPDATE: {'summarise': {'answer': 'summary of: facts about what is LangGraph?'}}
+OUTPUT: {'question': 'what is LangGraph?', 'notes': 'facts about what is LangGraph?', 'answer': 'summary of: facts about what is LangGraph?'}
+```git add README.md trace_flow.py
+````
