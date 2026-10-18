@@ -160,3 +160,13 @@ NODE UPDATE: {'summarise': {'answer': 'summary of: facts about what is LangGraph
 OUTPUT: {'question': 'what is LangGraph?', 'notes': 'facts about what is LangGraph?', 'answer': 'summary of: facts about what is LangGraph?'}
 ```git add README.md trace_flow.py
 ````
+
+## Sample Data (W1D4)
+
+`data/sample_dataset.csv` defines a research → summarise → critique loop as a graph.
+Each row is one edge: the node, its next node, the condition for taking the edge,
+a retry limit, and whether human approval is needed.
+
+Loaded with pandas via `load_data.py`: 6 rows, 7 columns.
+
+![Data loaded](docs/day4_data_loaded.png)

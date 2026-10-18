@@ -1,0 +1,7 @@
+step_id,node,description,next_node,condition,max_retries,requires_approval
+1,start,Receive the user question,research,always,0,False
+2,research,Gather facts on the topic,summarise,always,2,False
+3,summarise,Condense the notes into a short summary,critique,always,1,False
+4,critique,Score the summary from 1 to 10,research,score < 7,3,False
+5,critique,Accept the summary,send_report,score >= 7,3,False
+6,send_report,Send the final report to the user,end,always,0,True
