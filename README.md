@@ -170,3 +170,11 @@ a retry limit, and whether human approval is needed.
 Loaded with pandas via `load_data.py`: 6 rows, 7 columns.
 
 ![Data loaded](docs/day4_data_loaded.png)
+
+## Week 1 Output (W1D5)
+
+This project runs a LangGraph StateGraph with three nodes (research, summarise, critique)
+and a conditional edge that loops back to research until the critique score reaches 7.
+It uses `data/sample_dataset.csv`, which defines the loop's steps, conditions and retry limit.
+Running `python week1_run.py` prints the state at each step and saves the step log to
+`results/week1_results.csv` (screenshot: `docs/week1_output.png`).

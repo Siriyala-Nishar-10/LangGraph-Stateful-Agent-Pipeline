@@ -1,0 +1,7 @@
+step,node,update
+1,research,{'notes': 'Gather facts on the topic (pass 1): What is LangGraph?'}
+2,summarise,{'summary': 'Condense the notes into a short summary: Gather facts on the topic (pass 1): What is LangGraph?'}
+3,critique,"{'score': 5, 'loops': 1}"
+4,research,{'notes': 'Gather facts on the topic (pass 2): What is LangGraph?'}
+5,summarise,{'summary': 'Condense the notes into a short summary: Gather facts on the topic (pass 2): What is LangGraph?'}
+6,critique,"{'score': 7, 'loops': 2}"
