@@ -178,3 +178,28 @@ and a conditional edge that loops back to research until the critique score reac
 It uses `data/sample_dataset.csv`, which defines the loop's steps, conditions and retry limit.
 Running `python week1_run.py` prints the state at each step and saves the step log to
 `results/week1_results.csv` (screenshot: `docs/week1_output.png`).
+
+## Exploratory Data Analysis (W2D1)
+
+`notebooks/week2_day1_eda.ipynb` explores `data/sample_dataset.csv`.
+
+### EDA summary
+
+- The dataset has 6 rows and 7 columns; each row is one edge of the research → summarise → critique loop.
+- Only 3 columns are numeric or boolean (`step_id`, `max_retries`, `requires_approval`); the rest are text.
+- `max_retries` ranges from 0 to 3 (mean 1.5); the critique steps have the highest value (3).
+- The target `requires_approval` is imbalanced: 5 rows are False and 1 is True (only `send_report`).
+- No column has missing values, so none is above the 5% threshold.
+
+### Top 3 correlations
+
+| Pair                                 | Correlation |
+| ------------------------------------ | ----------- |
+| `step_id` vs `requires_approval`     | 0.65        |
+| `max_retries` vs `requires_approval` | -0.53       |
+| `step_id` vs `max_retries`           | 0.19        |
+
+### Limitation
+
+With only 6 rows and 3 numeric columns, these correlations are not statistically
+meaningful. The dataset will need to grow before modelling work in later days.
