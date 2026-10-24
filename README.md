@@ -179,27 +179,19 @@ It uses `data/sample_dataset.csv`, which defines the loop's steps, conditions an
 Running `python week1_run.py` prints the state at each step and saves the step log to
 `results/week1_results.csv` (screenshot: `docs/week1_output.png`).
 
-## Exploratory Data Analysis (W2D1)
+## Handling Missing Data on the Loan Dataset (W2D2)
 
-`notebooks/week2_day1_eda.ipynb` explores `data/sample_dataset.csv`.
+Dataset: Kaggle "Loan Prediction Problem" (`data/loan_approval.csv`), 614 rows and 13 columns.
+Target: `Loan_Status` (Y = approved, N = rejected).
 
-### EDA summary
+`clean_loan_data.py` found missing values in 7 columns: `Credit_History` (50),
+`Self_Employed` (32), `LoanAmount` (22), `Dependents` (15), `Loan_Amount_Term` (14),
+`Gender` (13) and `Married` (3). Numeric columns were filled with the median and text
+columns with the mode; no column exceeded 40% missing, so none was dropped.
+The script asserts zero missing values before saving `data/cleaned_loan_dataset.csv`.
 
-- The dataset has 6 rows and 7 columns; each row is one edge of the research → summarise → critique loop.
-- Only 3 columns are numeric or boolean (`step_id`, `max_retries`, `requires_approval`); the rest are text.
-- `max_retries` ranges from 0 to 3 (mean 1.5); the critique steps have the highest value (3).
-- The target `requires_approval` is imbalanced: 5 rows are False and 1 is True (only `send_report`).
-- No column has missing values, so none is above the 5% threshold.
+Note: `Credit_History` is really a 0/1 category, so the median fill sets missing rows
+to 1, the most common value.
 
-### Top 3 correlations
-
-| Pair                                 | Correlation |
-| ------------------------------------ | ----------- |
-| `step_id` vs `requires_approval`     | 0.65        |
-| `max_retries` vs `requires_approval` | -0.53       |
-| `step_id` vs `max_retries`           | 0.19        |
-
-### Limitation
-
-With only 6 rows and 3 numeric columns, these correlations are not statistically
-meaningful. The dataset will need to grow before modelling work in later days.
+`data/sample_dataset.csv` remains the pipeline data from Week 1; the loan dataset is
+used for the Week 2 and Week 3 modelling tasks.
