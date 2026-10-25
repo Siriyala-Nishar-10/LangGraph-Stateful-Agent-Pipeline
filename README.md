@@ -220,3 +220,14 @@ to 1, the most common value.
 
 `data/sample_dataset.csv` remains the pipeline data from Week 1; the loan dataset is
 used for the Week 2 and Week 3 modelling tasks.
+
+## Feature Engineering (W2D3)
+
+`notebooks/feature_engineering.ipynb` adds four features to the cleaned loan data:
+`TotalIncome` (applicant + coapplicant income), `LoanAmount_to_Income` (affordability ratio),
+`LogTotalIncome` (log transform to reduce skew), and `Income_Band` (4 equal-sized bands).
+
+The log transform reduces skew from 6.5 to 1.1. `LoanAmount_to_Income` has the strongest
+correlation with approval of the new features (-0.09); `Income_Band` shows almost no signal.
+`Credit_History` (0.54) remains the strongest predictor overall. The result is saved to
+`data/featured_loan_dataset.csv`.
