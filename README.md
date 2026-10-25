@@ -231,3 +231,14 @@ The log transform reduces skew from 6.5 to 1.1. `LoanAmount_to_Income` has the s
 correlation with approval of the new features (-0.09); `Income_Band` shows almost no signal.
 `Credit_History` (0.54) remains the strongest predictor overall. The result is saved to
 `data/featured_loan_dataset.csv`.
+
+## Scaling (W2D4)
+
+`notebooks/scaling.ipynb` splits the featured loan data 80/20 (stratified) and fits a
+`StandardScaler` on the training rows only, to avoid leaking test information. The 7
+continuous numeric features are scaled; `Credit_History` (0/1) is left unchanged.
+
+Training features end with mean 0 and std 1. Scaling does not change skew (the W2D3 log
+transform does), and `MinMaxScaler` was not needed since no planned model requires
+[0, 1] inputs. The fitted scaler is saved to `models/scaler.pkl` for the pipeline and
+serving.
