@@ -242,3 +242,13 @@ Training features end with mean 0 and std 1. Scaling does not change skew (the W
 transform does), and `MinMaxScaler` was not needed since no planned model requires
 [0, 1] inputs. The fitted scaler is saved to `models/scaler.pkl` for the pipeline and
 serving.
+
+## End-to-End Preprocessing Pipeline (W2D5)
+
+`preprocessing/pipeline.py` exposes `preprocess(df)`, which takes the raw loan DataFrame and returns `X, y`:
+fills missing values with fixed constants (W2D2), adds `TotalIncome`, `LoanAmount_to_Income`
+and `LogTotalIncome` (W2D3), scales the continuous features with `models/scaler.pkl` (W2D4),
+and one-hot encodes the categorical columns. `y` is 1 for approved and 0 for rejected.
+
+Running `python preprocessing/pipeline.py` processes `data/loan_approval.csv` end to end
+(614 rows, 17 feature columns). `Income_Band` is not used because it showed almost no signal.
