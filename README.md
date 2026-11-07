@@ -282,3 +282,12 @@ three models are effectively tied on the 123-row test set.
 The root split is `Credit_History`, which accounts for 63% of the importance. Rules are in
 `models/decision_tree_rules.txt` and the importances in `models/feature_importances.png`.
 Note: thresholds on numeric features are in standard deviations because the inputs are scaled.
+
+## Best Model (W3D4)
+
+`train_best.py` picks the model with the highest accuracy in `models/results.csv`.
+LogisticRegression and RandomForestClassifier tied at 0.8618, so the simpler one,
+LogisticRegression, was chosen and retrained on all 614 rows. It is saved to
+`models/best_model.pkl`, with `models/model_card.md` documenting the data, the metric
+and the known limitations (no held-out score after retraining, small test set,
+accuracy only, possible bias in the features).
