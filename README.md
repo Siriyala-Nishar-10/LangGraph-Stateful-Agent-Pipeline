@@ -272,3 +272,13 @@ overlap, so only the lead of `Credit_History` is clear.
 
 Test-set predictions with approval probabilities are in `data/scored_records.csv`; both scores
 are in `models/results.csv`.
+
+## Decision Tree Rules (W3D3)
+
+`train_tree.py` trains a `DecisionTreeClassifier(max_depth=5)` on the same split as the earlier
+models. Accuracy is 0.854, against 0.862 for the baseline and the random forest, so the
+three models are effectively tied on the 123-row test set.
+
+The root split is `Credit_History`, which accounts for 63% of the importance. Rules are in
+`models/decision_tree_rules.txt` and the importances in `models/feature_importances.png`.
+Note: thresholds on numeric features are in standard deviations because the inputs are scaled.
