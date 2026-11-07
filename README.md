@@ -261,3 +261,14 @@ Running `python preprocessing/pipeline.py` processes `data/loan_approval.csv` en
 Baseline accuracy: 0.862, against 0.691 for always predicting the majority class
 ("approved"). Predictions are saved to `models/linear_predictions.csv` and the score to
 `models/results.csv` (model_name, metric_name, score, date), which later models will append to.
+
+## Random Forest Classifier (W3D2)
+
+`train_forest.py` trains a `RandomForestClassifier` (200 trees) on the same split as the baseline.
+Accuracy is 0.862, identical to the logistic regression baseline (0.862), so the forest did not
+improve on it with this test set of 123 rows. Top features: `Credit_History` (0.218),
+`LoanAmount_to_Income`, `ApplicantIncome`, `LogTotalIncome`, `TotalIncome`; the income features
+overlap, so only the lead of `Credit_History` is clear.
+
+Test-set predictions with approval probabilities are in `data/scored_records.csv`; both scores
+are in `models/results.csv`.
