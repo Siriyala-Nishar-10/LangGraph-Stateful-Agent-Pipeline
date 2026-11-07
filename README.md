@@ -291,3 +291,11 @@ LogisticRegression, was chosen and retrained on all 614 rows. It is saved to
 `models/best_model.pkl`, with `models/model_card.md` documenting the data, the metric
 and the known limitations (no held-out score after retraining, small test set,
 accuracy only, possible bias in the features).
+
+## Enhancement Plan (W3D5)
+
+`docs/enhancement_plan.md` describes the planned enhancement: a human-in-the-loop approval
+node that pauses the agent before irreversible tool calls, using LangGraph's `interrupt()`,
+a checkpointer and `Command(resume=...)`. Success is measured by behaviour (zero irreversible
+actions without approval across the test scenarios). Three sub-tasks of about 1.5 hours each.
+Status: awaiting mentor approval.
