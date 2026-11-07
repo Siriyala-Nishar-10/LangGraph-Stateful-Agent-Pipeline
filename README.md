@@ -252,3 +252,12 @@ and one-hot encodes the categorical columns. `y` is 1 for approved and 0 for rej
 
 Running `python preprocessing/pipeline.py` processes `data/loan_approval.csv` end to end
 (614 rows, 17 feature columns). `Income_Band` is not used because it showed almost no signal.
+
+## Baseline Model (W3D1)
+
+`train_baseline.py` trains a `LogisticRegression` on the output of `preprocess()`
+(80/20 stratified split, `random_state=42`, 491 train / 123 test rows).
+
+Baseline accuracy: 0.862, against 0.691 for always predicting the majority class
+("approved"). Predictions are saved to `models/linear_predictions.csv` and the score to
+`models/results.csv` (model_name, metric_name, score, date), which later models will append to.

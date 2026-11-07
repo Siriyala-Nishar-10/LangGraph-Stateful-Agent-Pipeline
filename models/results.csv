@@ -1,0 +1,2 @@
+model_name,metric_name,score,date
+LogisticRegression,accuracy,0.8618,2026-11-07
