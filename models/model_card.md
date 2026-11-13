@@ -34,3 +34,13 @@ Project: LangGraph Stateful Agent Pipeline (Cynaris Solutions AI/ML internship)
   Missing-value fill constants were computed on the full dataset, which leaks a small amount of
   information from the test rows.
 - **Not part of the agent logic yet.** This is a standalone classifier for the Week 3 tasks.
+
+## Tuning (W4D2)
+Date: 2026-11-13
+- **Search:** RandomizedSearchCV, 20 random combinations, 5-fold stratified CV, on the 491 training rows.
+- **Grid:** `C` [0.1, 1, 10], `class_weight` [None, 'balanced'], `solver` ['lbfgs', 'liblinear', 'saga'], `tol` [0.0001, 0.001]
+- **Best parameters:** `{'tol': 0.001, 'solver': 'lbfgs', 'class_weight': None, 'C': 1}`
+- **CV accuracy (training split):** default 0.7983 -> tuned 0.7983 (+0.0000)
+- **Held-out test accuracy (123 rows):** default 0.8618 -> tuned 0.8618 (+0.0000)
+- **Conclusion:** The differences are within the noise of a 491-row cross-validation and a 123-row test set, so tuning gives no reliable improvement over the default settings.
+- **Saved model:** `models/tuned_model.pkl`, retrained on all 614 rows with the best parameters, so it also has no held-out score.

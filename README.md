@@ -308,3 +308,12 @@ favourable and 0.81 is the more reliable estimate. The learning curve
 (`models/learning_curve.png`) shows training (about 0.82) and validation (about 0.81) scores
 converging, so the model is limited by feature information rather than data size. CV scores
 are appended to `models/results.csv`.
+
+## Hyperparameter Tuning (W4D2)
+
+`tune_model.py` runs `RandomizedSearchCV` (20 combinations, 5-fold CV) on the 491 training rows
+for LogisticRegression, searching `C`, `class_weight`, `solver` and `tol`. The best parameters
+were essentially the defaults, and neither score changed (CV accuracy 0.798 for both, held-out
+test accuracy 0.862 for both), so tuning gave no reliable improvement; the model is limited by
+its features, as the learning curve showed. The result is in `models/tuned_model.pkl` and the
+Tuning section of `models/model_card.md`.
