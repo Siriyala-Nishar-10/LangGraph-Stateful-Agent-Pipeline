@@ -1,0 +1,15 @@
+# Pinned to the versions used during development (Python 3.14)
+langgraph==1.2.16
+langchain-core==1.6.12
+langchain-openai==1.7.2
+
+# Web API
+fastapi
+uvicorn
+
+# Data and model
+pandas
+numpy
+scikit-learn
+joblib
+matplotlib
