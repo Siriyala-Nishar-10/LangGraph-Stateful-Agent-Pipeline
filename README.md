@@ -299,3 +299,12 @@ node that pauses the agent before irreversible tool calls, using LangGraph's `in
 a checkpointer and `Command(resume=...)`. Success is measured by behaviour (zero irreversible
 actions without approval across the test scenarios). Three sub-tasks of about 1.5 hours each.
 Status: awaiting mentor approval.
+
+## Cross-Validation and Learning Curve (W4D1)
+
+`evaluate_cv.py` runs stratified 5-fold cross-validation on the best model (LogisticRegression):
+accuracy 0.808 ± 0.019, lower than the 0.862 on the single 80/20 split, so the split was
+favourable and 0.81 is the more reliable estimate. The learning curve
+(`models/learning_curve.png`) shows training (about 0.82) and validation (about 0.81) scores
+converging, so the model is limited by feature information rather than data size. CV scores
+are appended to `models/results.csv`.

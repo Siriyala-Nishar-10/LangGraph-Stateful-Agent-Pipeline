@@ -2,3 +2,5 @@ model_name,metric_name,score,date
 LogisticRegression,accuracy,0.8618,2026-11-07
 RandomForestClassifier,accuracy,0.8618,2026-11-07
 DecisionTreeClassifier,accuracy,0.8537,2026-11-07
+LogisticRegression (5-fold CV),accuracy_mean,0.8079,2026-11-13
+LogisticRegression (5-fold CV),accuracy_std,0.0194,2026-11-13
