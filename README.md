@@ -325,3 +325,11 @@ Tuning section of `models/model_card.md`.
 recall 0.97, F1 0.87, ROC AUC 0.75, but only 0.45 of bad loans are caught, because the model leans
 towards approving. The metric to optimise is precision for the approved class (a wrong approval
 is the costly error). Full table, confusion matrix and interpretation: `docs/model_performance.md`.
+
+## Enhancement Skeleton (W4D4)
+
+Branch `feature/enhancement` adds a human-in-the-loop approval step, following `docs/enhancement_plan.md`.
+`approval_graph.py` reuses the Week 1 nodes and adds an `approval` node that calls `interrupt()`,
+a `send_report` stub (the irreversible action) and a checkpointer, so a run pauses before sending and
+only continues on "approve". `approval_demo.py` shows the pause; resume handling (sub-task 2) and tests
+(sub-task 3) are marked as TODO. `week1_run.py` and the API are unchanged.
