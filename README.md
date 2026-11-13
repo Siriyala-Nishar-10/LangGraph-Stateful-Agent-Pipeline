@@ -333,3 +333,14 @@ Branch `feature/enhancement` adds a human-in-the-loop approval step, following `
 a `send_report` stub (the irreversible action) and a checkpointer, so a run pauses before sending and
 only continues on "approve". `approval_demo.py` shows the pause; resume handling (sub-task 2) and tests
 (sub-task 3) are marked as TODO. `week1_run.py` and the API are unchanged.
+
+## Serving API (W4D5)
+
+`app.py` is a FastAPI app. Start it from the project root with `uvicorn app:app --reload`
+(interactive docs at `/docs`).
+
+- `GET /health`: `{"status": "ok", "model": "LogisticRegression"}`
+- `POST /predict`: loan application JSON in, decision and approval probability out
+- `POST /invoke`: `{"input": "...", "thread_id": "..."}` runs the LangGraph pipeline and returns the final state
+
+Prediction logic lives in `serving.py`, which reuses `preprocessing/pipeline.py`. Dependencies: `requirements.txt`.
