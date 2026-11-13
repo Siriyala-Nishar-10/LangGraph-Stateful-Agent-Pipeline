@@ -317,3 +317,11 @@ were essentially the defaults, and neither score changed (CV accuracy 0.798 for 
 test accuracy 0.862 for both), so tuning gave no reliable improvement; the model is limited by
 its features, as the learning curve showed. The result is in `models/tuned_model.pkl` and the
 Tuning section of `models/model_card.md`.
+
+## Model Metrics (W4D3)
+
+`evaluate_metrics.py` evaluates the tuned LogisticRegression on the 123 held-out rows and on
+5-fold cross-validated predictions for all 614 rows. CV results: accuracy 0.808, precision 0.80,
+recall 0.97, F1 0.87, ROC AUC 0.75, but only 0.45 of bad loans are caught, because the model leans
+towards approving. The metric to optimise is precision for the approved class (a wrong approval
+is the costly error). Full table, confusion matrix and interpretation: `docs/model_performance.md`.
